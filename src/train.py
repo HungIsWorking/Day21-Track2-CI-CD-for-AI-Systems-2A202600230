@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, f1_score
 os.environ["MLFLOW_TRACKING_URI"] = "sqlite:///mlflow.db"
 os.environ["MLFLOW_ARTIFACT_ROOT"] = "./mlartifacts"
 
-# Keep the training gate aligned with the CI/CD eval threshold.
+# Keep the training gate aligned with the CI/CD eval threshold for Step 3.
 EVAL_THRESHOLD = 0.70
 
 def train(

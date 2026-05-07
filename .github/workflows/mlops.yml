@@ -56,12 +56,14 @@ jobs:
       - name: Read metrics
         id: read_metrics
         run: |
-          python -c '
+          python - <<'EOF' >> "$GITHUB_OUTPUT"
           import json
+
           with open("outputs/metrics.json") as f:
-              metrics = json.load(f)
-              print(f"accuracy={metrics[\"accuracy\"]}")
-          ' >> $GITHUB_OUTPUT
+            metrics = json.load(f)
+
+          print(f"accuracy={metrics['accuracy']}")
+          EOF
 
       - name: Upload model to Cloud Storage
         run: |

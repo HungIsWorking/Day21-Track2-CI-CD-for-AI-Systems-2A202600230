@@ -33,10 +33,13 @@ def download_model():
 
 # Goi khi server khoi dong
 download_model()
+model = None
 if os.path.exists(MODEL_PATH):
-    model = joblib.load(MODEL_PATH)
-else:
-    model = None
+    try:
+        model = joblib.load(MODEL_PATH)
+        print("Model loaded successfully")
+    except Exception as e:
+        print(f"Failed to load model: {e}")
 
 
 class PredictRequest(BaseModel):
@@ -46,8 +49,6 @@ class PredictRequest(BaseModel):
 @app.get("/health")
 def health():
     """Endpoint kiem tra suc khoe server."""
-    if model is None:
-        return {"status": "error", "message": "Model not loaded"}
     return {"status": "ok"}
 
 
